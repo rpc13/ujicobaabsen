@@ -3,7 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Aplikasi Presensi Guru SDN Mongisidi 3</title>
+  <title>Aplikasi Presensi Guru SD Negeri Garuda</title>
+
+  <!-- PWA: Ikon & Manifest (tampil sebagai logo sekolah saat "Tambahkan ke Layar Utama") -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+  <meta name="theme-color" content="#CA8A04">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Presensi Garuda">
 
   <!-- CSS Frameworks & Libraries -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -14,8 +26,8 @@
 
   <style>
     body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
-    .bg-primary { background: linear-gradient(135deg, #10b981, #047857); }
-    .nav-active { color: #059669; font-weight: 700; }
+    .bg-primary { background: linear-gradient(135deg, #EAB308, #A16207); }
+    .nav-active { color: #CA8A04; font-weight: 700; }
     ::-webkit-scrollbar { height: 6px; width: 6px; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
     .swal2-input, .swal2-textarea, .swal2-select { font-size: 13px !important; }
@@ -28,22 +40,22 @@
   <!-- LOGIN MODAL CONTAINER -->
   <div id="loginSection" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 text-center">
-      <div class="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-600 text-2xl">
+      <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4 text-yellow-600 text-2xl">
         <i class="fa-solid fa-school"></i>
       </div>
-      <h2 class="text-xl font-bold text-slate-800">Presensi SDN Mongisidi 3</h2>
+      <h2 class="text-xl font-bold text-slate-800">Presensi SD Negeri Garuda</h2>
       <p class="text-xs text-slate-500 mt-1 mb-6">Silakan login menggunakan akun Anda</p>
 
       <div class="space-y-4 text-left">
         <div>
           <label class="text-xs font-semibold text-slate-600">ID User / NIP</label>
-          <input type="text" id="loginUserId" class="w-full mt-1 p-3 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm" placeholder="Masukkan ID User">
+          <input type="text" id="loginUserId" class="w-full mt-1 p-3 border rounded-xl focus:ring-2 focus:ring-yellow-500 outline-none text-sm" placeholder="Masukkan ID User">
         </div>
         <div>
           <label class="text-xs font-semibold text-slate-600">Password</label>
-          <input type="password" id="loginPassword" class="w-full mt-1 p-3 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm" placeholder="Masukkan Password">
+          <input type="password" id="loginPassword" class="w-full mt-1 p-3 border rounded-xl focus:ring-2 focus:ring-yellow-500 outline-none text-sm" placeholder="Masukkan Password">
         </div>
-        <button onclick="doLogin()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl text-sm transition shadow-lg shadow-emerald-500/30">
+        <button onclick="doLogin()" class="w-full py-3 bg-yellow-600 hover:bg-yellow-700 text-white font-semibold rounded-xl text-sm transition shadow-lg shadow-yellow-500/30">
           Masuk Aplikasi
         </button>
       </div>
@@ -58,13 +70,13 @@
           G
         </div>
         <div>
-          <h1 class="font-bold text-sm leading-tight" id="headerUserName">Guru SDN Mongisidi 3</h1>
-          <p class="text-xs text-emerald-100" id="headerUserRole">Guru Kelas • Guru</p>
+          <h1 class="font-bold text-sm leading-tight" id="headerUserName">Guru SD Negeri Garuda</h1>
+          <p class="text-xs text-yellow-100" id="headerUserRole">Guru Kelas • Guru</p>
         </div>
       </div>
       <div class="text-right">
         <span id="headerClock" class="text-xs font-mono font-bold block">--.--.-- WITA</span>
-        <span id="headerDate" class="text-[10px] text-emerald-100">Memuat tanggal...</span>
+        <span id="headerDate" class="text-[10px] text-yellow-100">Memuat tanggal...</span>
       </div>
     </div>
   </header>
@@ -75,7 +87,7 @@
     <!-- TAB 1: HOME (PRESENSI KAMERA) -->
     <div id="tabHome" class="tab-content space-y-4">
 
-      <div class="bg-emerald-50 border border-emerald-200 text-emerald-700 text-[11px] rounded-xl p-3 flex items-center justify-between">
+      <div class="bg-yellow-50 border border-yellow-200 text-yellow-700 text-[11px] rounded-xl p-3 flex items-center justify-between">
         <div><i class="fa-solid fa-calendar-day mr-1"></i> Jadwal Hari <b id="homeHariIni">-</b></div>
         <div id="homeJadwalHariIni" class="text-right font-mono text-[10px] leading-tight">-</div>
       </div>
@@ -88,7 +100,7 @@
           <div id="cameraErrorOverlay" class="hidden absolute inset-0 bg-black/90 flex flex-col items-center justify-center text-center p-4 text-white text-xs gap-2 z-10">
             <i class="fa-solid fa-video-slash text-2xl text-red-400"></i>
             <p id="cameraErrorMsg" class="leading-snug">Kamera tidak dapat diakses.</p>
-            <button onclick="initCamera()" class="mt-1 px-3 py-1.5 bg-emerald-600 rounded-lg text-[11px] font-semibold">
+            <button onclick="initCamera()" class="mt-1 px-3 py-1.5 bg-yellow-600 rounded-lg text-[11px] font-semibold">
               <i class="fa-solid fa-rotate mr-1"></i> Coba Lagi
             </button>
           </div>
@@ -104,7 +116,7 @@
         </div>
 
         <div class="mb-4">
-          <textarea id="jurnalInput" rows="2" class="w-full text-xs p-3 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none" placeholder="Jurnal Mengajar / Catatan Harian (Opsional)..."></textarea>
+          <textarea id="jurnalInput" rows="2" class="w-full text-xs p-3 border rounded-xl focus:ring-2 focus:ring-yellow-500 outline-none" placeholder="Jurnal Mengajar / Catatan Harian (Opsional)..."></textarea>
         </div>
 
         <div class="grid grid-cols-2 gap-3">
@@ -132,7 +144,7 @@
             <input type="date" id="filterEndDate" class="w-full text-xs p-2 border rounded-lg">
           </div>
         </div>
-        <button onclick="loadRiwayatData()" class="w-full py-2 bg-emerald-600 text-white rounded-lg text-xs font-semibold">Tampilkan Data</button>
+        <button onclick="loadRiwayatData()" class="w-full py-2 bg-yellow-600 text-white rounded-lg text-xs font-semibold">Tampilkan Data</button>
       </div>
 
       <!-- CHART RESUME -->
@@ -176,7 +188,7 @@
         <h2 class="text-xs font-bold text-slate-700 uppercase"><i class="fa-solid fa-file-signature mr-1"></i> Form Pengajuan Izin / Cuti</h2>
         <div>
           <label class="text-[11px] font-semibold text-slate-600">Jenis Pengajuan</label>
-          <select id="jenisIzin" class="w-full mt-1 p-2.5 border rounded-xl text-xs">
+          <select id="jenisIzin" onchange="toggleDinasLuarFields()" class="w-full mt-1 p-2.5 border rounded-xl text-xs">
             <option value="Izin">Izin</option>
             <option value="Sakit">Sakit</option>
             <option value="Cuti">Cuti</option>
@@ -193,6 +205,19 @@
             <input type="date" id="izinSelesai" class="w-full mt-1 p-2 border rounded-xl text-xs">
           </div>
         </div>
+        <div id="dinasLuarJamWrapper" class="hidden bg-yellow-50 border border-yellow-200 rounded-xl p-3 space-y-2">
+          <p class="text-[10px] text-yellow-700 leading-snug"><i class="fa-solid fa-circle-info mr-1"></i>Isi jam mulai &amp; selesai dinas luar supaya jam kerja hari ini tetap terhitung di Rekap Jam Kerja.</p>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="text-[11px] font-semibold text-slate-600">Jam Mulai (Absen Masuk)</label>
+              <input type="time" id="izinJamMasukDL" class="w-full mt-1 p-2 border rounded-xl text-xs">
+            </div>
+            <div>
+              <label class="text-[11px] font-semibold text-slate-600">Jam Selesai (Absen Pulang)</label>
+              <input type="time" id="izinJamPulangDL" class="w-full mt-1 p-2 border rounded-xl text-xs">
+            </div>
+          </div>
+        </div>
         <div>
           <label class="text-[11px] font-semibold text-slate-600">Keterangan</label>
           <textarea id="izinKet" rows="2" class="w-full mt-1 p-2 border rounded-xl text-xs" placeholder="Alasan izin..."></textarea>
@@ -201,7 +226,7 @@
           <label class="text-[11px] font-semibold text-slate-600">Lampiran File (PDF/Foto)</label>
           <input type="file" id="izinFile" class="w-full mt-1 text-xs">
         </div>
-        <button onclick="submitIzin()" class="w-full py-3 bg-emerald-600 text-white rounded-xl text-xs font-bold shadow-md">Kirim Pengajuan</button>
+        <button onclick="submitIzin()" class="w-full py-3 bg-yellow-600 text-white rounded-xl text-xs font-bold shadow-md">Kirim Pengajuan</button>
       </div>
     </div>
 
@@ -212,7 +237,7 @@
       <div id="adminHub" class="admin-view space-y-4">
         <div class="bg-white p-4 rounded-2xl shadow-sm flex items-center justify-between">
           <div class="flex items-center gap-3">
-            <div class="w-11 h-11 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg">
+            <div class="w-11 h-11 rounded-full bg-yellow-100 text-yellow-700 flex items-center justify-center text-lg">
               <i class="fa-solid fa-user-shield"></i>
             </div>
             <div>
@@ -227,7 +252,7 @@
 
         <div class="grid grid-cols-3 gap-3">
           <button onclick="openAdminPanel('panelSummary'); loadAdminSummary();" class="bg-white p-3 rounded-2xl shadow-sm flex flex-col items-center gap-2 hover:shadow-md transition">
-            <div class="w-11 h-11 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg"><i class="fa-solid fa-chart-pie"></i></div>
+            <div class="w-11 h-11 rounded-xl bg-yellow-100 text-yellow-600 flex items-center justify-center text-lg"><i class="fa-solid fa-chart-pie"></i></div>
             <span class="text-[10px] font-semibold text-slate-600 text-center leading-tight">Ringkasan<br>Hari Ini</span>
           </button>
           <button onclick="openAdminPanel('panelMatrix')" class="bg-white p-3 rounded-2xl shadow-sm flex flex-col items-center gap-2 hover:shadow-md transition">
@@ -243,7 +268,7 @@
             <span class="text-[10px] font-semibold text-slate-600 text-center leading-tight">Notifikasi<br>Izin</span>
           </button>
           <button onclick="openAdminPanel('panelUsers'); loadUsersList();" class="bg-white p-3 rounded-2xl shadow-sm flex flex-col items-center gap-2 hover:shadow-md transition">
-            <div class="w-11 h-11 rounded-xl bg-emerald-200 text-emerald-800 flex items-center justify-center text-lg"><i class="fa-solid fa-users-gear"></i></div>
+            <div class="w-11 h-11 rounded-xl bg-yellow-200 text-yellow-800 flex items-center justify-center text-lg"><i class="fa-solid fa-users-gear"></i></div>
             <span class="text-[10px] font-semibold text-slate-600 text-center leading-tight">Pengaturan<br>User</span>
           </button>
           <button onclick="openAdminPanel('panelSettings'); populateAdminSettingsForm();" class="bg-white p-3 rounded-2xl shadow-sm flex flex-col items-center gap-2 hover:shadow-md transition">
@@ -263,7 +288,7 @@
         <div class="bg-white p-4 rounded-2xl shadow-sm space-y-3">
           <div class="flex gap-2">
             <input type="date" id="summaryDate" class="flex-1 p-2 border rounded-lg text-xs">
-            <button onclick="loadAdminSummary()" class="px-3 py-2 bg-emerald-600 text-white rounded-lg text-xs font-bold">Tampilkan</button>
+            <button onclick="loadAdminSummary()" class="px-3 py-2 bg-yellow-600 text-white rounded-lg text-xs font-bold">Tampilkan</button>
           </div>
 
           <div class="w-36 h-36 mx-auto py-1">
@@ -328,7 +353,7 @@
             <input type="date" id="rekapStart" class="p-2 border rounded-lg text-xs">
             <input type="date" id="rekapEnd" class="p-2 border rounded-lg text-xs">
           </div>
-          <button onclick="loadRekapMatrixPreview()" class="w-full py-2 bg-emerald-600 text-white rounded-lg text-xs font-bold"><i class="fa-solid fa-eye mr-1"></i> Tampilkan Preview</button>
+          <button onclick="loadRekapMatrixPreview()" class="w-full py-2 bg-yellow-600 text-white rounded-lg text-xs font-bold"><i class="fa-solid fa-eye mr-1"></i> Tampilkan Preview</button>
           <button onclick="exportRekapMatrixExcel()" class="w-full py-2 bg-green-700 text-white rounded-lg text-xs font-bold"><i class="fa-solid fa-download mr-1"></i> Download Excel</button>
         </div>
 
@@ -362,7 +387,7 @@
             <label class="text-[10px] text-slate-500">Target Jam Kerja (mis. 37.5 jam)</label>
             <input type="number" step="0.5" id="jkTarget" value="37.5" class="w-full p-2 border rounded-lg text-xs">
           </div>
-          <button onclick="loadRekapJamKerja()" class="w-full py-2 bg-emerald-600 text-white rounded-lg text-xs font-bold"><i class="fa-solid fa-eye mr-1"></i> Tampilkan</button>
+          <button onclick="loadRekapJamKerja()" class="w-full py-2 bg-yellow-600 text-white rounded-lg text-xs font-bold"><i class="fa-solid fa-eye mr-1"></i> Tampilkan</button>
           <button onclick="exportRekapJamKerjaExcel()" class="w-full py-2 bg-green-700 text-white rounded-lg text-xs font-bold"><i class="fa-solid fa-download mr-1"></i> Download Excel</button>
         </div>
 
@@ -371,7 +396,7 @@
             <canvas id="jkChart"></canvas>
           </div>
           <div class="grid grid-cols-2 gap-2 mt-2">
-            <div onclick="filterJamKerja('tercapai')" id="btn-jk-tercapai" class="bg-emerald-600 text-white text-center p-2.5 rounded-lg cursor-pointer hover:opacity-90 transition ring-2 ring-emerald-600">
+            <div onclick="filterJamKerja('tercapai')" id="btn-jk-tercapai" class="bg-yellow-600 text-white text-center p-2.5 rounded-lg cursor-pointer hover:opacity-90 transition ring-2 ring-yellow-600">
               <span class="block font-bold text-lg" id="jkCntTercapai">0</span>
               <span class="text-[10px]">Mencapai Target</span>
             </div>
@@ -406,7 +431,7 @@
             <button onclick="closeAdminPanel()" class="w-9 h-9 rounded-full bg-white shadow flex items-center justify-center text-slate-600"><i class="fa-solid fa-arrow-left"></i></button>
             <h2 class="font-bold text-slate-800 text-sm">Pengaturan User</h2>
           </div>
-          <button onclick="openUserForm()" class="w-9 h-9 rounded-full bg-emerald-600 text-white flex items-center justify-center shadow"><i class="fa-solid fa-plus"></i></button>
+          <button onclick="openUserForm()" class="w-9 h-9 rounded-full bg-yellow-600 text-white flex items-center justify-center shadow"><i class="fa-solid fa-plus"></i></button>
         </div>
         <div id="usersListContainer" class="space-y-2"></div>
       </div>
@@ -421,8 +446,8 @@
         <!-- Koordinat & Radius: GLOBAL, cukup diatur 1 kali -->
         <div class="bg-white p-4 rounded-2xl shadow-sm space-y-3">
           <div class="flex items-center justify-between">
-            <div class="text-[11px] font-bold text-emerald-600">Koordinat &amp; Radius Sekolah (Global)</div>
-            <button onclick="useMyLocationForSettings()" class="text-[10px] text-emerald-600 underline"><i class="fa-solid fa-location-crosshairs mr-1"></i>Pakai Lokasi Saya</button>
+            <div class="text-[11px] font-bold text-yellow-600">Koordinat &amp; Radius Sekolah (Global)</div>
+            <button onclick="useMyLocationForSettings()" class="text-[10px] text-yellow-600 underline"><i class="fa-solid fa-location-crosshairs mr-1"></i>Pakai Lokasi Saya</button>
           </div>
           <p class="text-[10px] text-slate-400 -mt-2">Koordinat &amp; radius ini berlaku untuk semua hari, cukup diatur satu kali di sini.</p>
           <div class="grid grid-cols-2 gap-2">
@@ -430,11 +455,12 @@
             <input type="number" step="any" id="cfgLng" placeholder="Longitude" class="p-2 border rounded-lg text-xs">
           </div>
           <input type="number" id="cfgRadius" placeholder="Radius Maksimal Absen (Meter)" class="w-full p-2 border rounded-lg text-xs">
+          <button onclick="saveLocationSettings()" class="w-full py-2.5 bg-yellow-700 text-white rounded-lg text-xs font-bold shadow-md">Simpan Koordinat &amp; Radius</button>
         </div>
 
         <!-- Jadwal Per Hari -->
         <div class="bg-white p-4 rounded-2xl shadow-sm space-y-3">
-          <div class="text-[11px] font-bold text-emerald-600">Jam Kerja &amp; Kunci Lokasi per Hari</div>
+          <div class="text-[11px] font-bold text-yellow-600">Jam Kerja &amp; Kunci Lokasi per Hari</div>
           <div class="grid grid-cols-6 gap-1" id="daySelectorTabs"></div>
 
           <div class="grid grid-cols-2 gap-2 pt-1">
@@ -467,12 +493,12 @@
             </select>
           </div>
 
-          <button onclick="copyDaySettingsToAllDays()" class="w-full py-2 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg text-[11px] font-semibold">
+          <button onclick="copyDaySettingsToAllDays()" class="w-full py-2 bg-yellow-50 text-yellow-700 border border-yellow-200 rounded-lg text-[11px] font-semibold">
             <i class="fa-solid fa-copy mr-1"></i> Terapkan Jadwal Hari Ini ke Semua Hari
           </button>
-        </div>
 
-        <button onclick="saveAdminSettings()" class="w-full py-2.5 bg-emerald-700 text-white rounded-lg text-xs font-bold shadow-md">Simpan Pengaturan</button>
+          <button onclick="saveScheduleSettings()" class="w-full py-2.5 bg-yellow-700 text-white rounded-lg text-xs font-bold shadow-md">Simpan Jam Kerja &amp; Kunci Lokasi</button>
+        </div>
       </div>
 
     </div>
@@ -507,7 +533,7 @@
      * KONSTANTA & STATE GLOBAL
      * ======================================================================== */
     const BACKEND_URL = "https://script.google.com/macros/s/AKfycbxnrsZiggHrd8Xwy6n3J3Mz2hdJlIK-cKu0MWkXgc1TKMLG5cqdfxhZLQq9Koq3bwLB/exec";
-    const NAMA_SEKOLAH = "SDN MONGISIDI 3";
+    const NAMA_SEKOLAH = "SD NEGERI GARUDA";
     const DAY_LIST = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
 
     let currentUser = null;
@@ -753,7 +779,7 @@
     function statusBadgeClass(status) {
       const s = String(status || '').toLowerCase();
       if (s.includes('terlambat')) return 'bg-amber-100 text-amber-700';
-      if (s.includes('tepat')) return 'bg-emerald-100 text-emerald-700';
+      if (s.includes('tepat')) return 'bg-yellow-100 text-yellow-700';
       if (s.includes('dinas luar')) return 'bg-teal-100 text-teal-700';
       if (s.includes('sakit')) return 'bg-pink-100 text-pink-700';
       if (s.includes('cuti')) return 'bg-purple-100 text-purple-700';
@@ -875,7 +901,7 @@
           showCancelButton: true,
           confirmButtonText: 'Shift Pagi',
           cancelButtonText: 'Shift Siang',
-          confirmButtonColor: '#059669',
+          confirmButtonColor: '#CA8A04',
           cancelButtonColor: '#d97706'
         }).then((result) => {
           let selectedShift = 'PAGI';
@@ -1007,15 +1033,15 @@
           <td class="p-2"><span class="px-1.5 py-0.5 rounded text-[9px] font-bold ${statusBadgeClass(r.status)}">${r.status}</span></td>
           <td class="p-2 font-mono text-center">
             <div>${r.jamMasuk}</div>
-            ${mapMasukUrl ? `<a href="${mapMasukUrl}" target="_blank" class="text-[9px] text-emerald-600 hover:underline block font-sans"><i class="fa-solid fa-location-dot"></i> Peta</a>` : ''}
+            ${mapMasukUrl ? `<a href="${mapMasukUrl}" target="_blank" class="text-[9px] text-yellow-600 hover:underline block font-sans"><i class="fa-solid fa-location-dot"></i> Peta</a>` : ''}
           </td>
           <td class="p-2 font-mono text-center">
             <div>${r.jamPulang}</div>
             ${mapPulangUrl ? `<a href="${mapPulangUrl}" target="_blank" class="text-[9px] text-amber-600 hover:underline block font-sans"><i class="fa-solid fa-location-dot"></i> Peta</a>` : ''}
           </td>
-          <td class="p-2 text-center font-bold text-emerald-600">${durasi}</td>
-          <td class="p-2 text-center">${r.fotoMasuk && r.fotoMasuk !== '-' ? `<a href="${r.fotoMasuk}" target="_blank" class="text-emerald-600 underline text-[10px]">Foto</a>` : '-'}</td>
-          <td class="p-2 text-center">${r.fotoPulang && r.fotoPulang !== '-' ? `<a href="${r.fotoPulang}" target="_blank" class="text-emerald-600 underline text-[10px]">Foto</a>` : '-'}</td>
+          <td class="p-2 text-center font-bold text-yellow-600">${durasi}</td>
+          <td class="p-2 text-center">${r.fotoMasuk && r.fotoMasuk !== '-' ? `<a href="${r.fotoMasuk}" target="_blank" class="text-yellow-600 underline text-[10px]">Foto</a>` : '-'}</td>
+          <td class="p-2 text-center">${r.fotoPulang && r.fotoPulang !== '-' ? `<a href="${r.fotoPulang}" target="_blank" class="text-yellow-600 underline text-[10px]">Foto</a>` : '-'}</td>
         `;
         tbody.appendChild(tr);
       });
@@ -1081,6 +1107,14 @@
       sel.innerHTML = opts.map(o => `<option value="${o}">${o}</option>`).join('');
     }
 
+    // Menampilkan/menyembunyikan field jam masuk & pulang manual, hanya untuk
+    // jenis pengajuan "Dinas Luar" (supaya jam kerja tetap terhitung).
+    function toggleDinasLuarFields() {
+      const jenis = document.getElementById('jenisIzin').value;
+      const wrapper = document.getElementById('dinasLuarJamWrapper');
+      wrapper.classList.toggle('hidden', jenis !== 'Dinas Luar');
+    }
+
     function submitIzin() {
       const jenis = document.getElementById('jenisIzin').value;
       const mulai = document.getElementById('izinMulai').value;
@@ -1090,18 +1124,31 @@
 
       if (!mulai || !ket) return Swal.fire('Peringatan', 'Isi tanggal dan keterangan!', 'warning');
 
+      let jamMasukDL = "";
+      let jamPulangDL = "";
+      if (jenis === 'Dinas Luar') {
+        jamMasukDL = document.getElementById('izinJamMasukDL').value;
+        jamPulangDL = document.getElementById('izinJamPulangDL').value;
+        if ((jamMasukDL && !jamPulangDL) || (!jamMasukDL && jamPulangDL)) {
+          return Swal.fire('Peringatan', 'Isi jam mulai DAN jam selesai dinas luar (atau kosongkan keduanya)!', 'warning');
+        }
+        if (jamMasukDL && jamPulangDL && jamPulangDL <= jamMasukDL) {
+          return Swal.fire('Peringatan', 'Jam selesai dinas luar harus lebih besar dari jam mulai!', 'warning');
+        }
+      }
+
       Swal.showLoading();
 
       if (fileInput.files.length > 0) {
         const reader = new FileReader();
-        reader.onload = function (e) { sendIzinApi(jenis, mulai, selesai, ket, e.target.result, fileInput.files[0].name); };
+        reader.onload = function (e) { sendIzinApi(jenis, mulai, selesai, ket, e.target.result, fileInput.files[0].name, jamMasukDL, jamPulangDL); };
         reader.readAsDataURL(fileInput.files[0]);
       } else {
-        sendIzinApi(jenis, mulai, selesai, ket, "", "");
+        sendIzinApi(jenis, mulai, selesai, ket, "", "", jamMasukDL, jamPulangDL);
       }
     }
 
-    function sendIzinApi(jenis, mulai, selesai, ket, fileBase64, fileName) {
+    function sendIzinApi(jenis, mulai, selesai, ket, fileBase64, fileName, jamMasukDL, jamPulangDL) {
       fetch(BACKEND_URL, {
         method: 'POST',
         body: JSON.stringify({
@@ -1113,7 +1160,9 @@
           tanggalSelesai: selesai,
           keterangan: ket,
           fileBase64: fileBase64,
-          fileName: fileName
+          fileName: fileName,
+          jamMasukDinasLuar: jamMasukDL || "",
+          jamPulangDinasLuar: jamPulangDL || ""
         })
       })
         .then(res => res.json())
@@ -1122,6 +1171,10 @@
           if (res.status === 'success') {
             document.getElementById('izinKet').value = '';
             document.getElementById('izinFile').value = '';
+            document.getElementById('izinJamMasukDL').value = '';
+            document.getElementById('izinJamPulangDL').value = '';
+            document.getElementById('jenisIzin').value = 'Izin';
+            toggleDinasLuarFields();
             switchTab('Jurnal');
             loadRiwayatData();
           }
@@ -1163,7 +1216,7 @@
       const c = document.getElementById('daySelectorTabs');
       c.innerHTML = DAY_LIST.map(d => {
         const isActive = d === activeSettingsDay;
-        return `<button type="button" onclick="switchSettingsDay('${d}')" class="py-1.5 rounded-lg text-[10px] font-bold border transition ${isActive ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-slate-600 border-slate-200'}">${d.slice(0, 3)}</button>`;
+        return `<button type="button" onclick="switchSettingsDay('${d}')" class="py-1.5 rounded-lg text-[10px] font-bold border transition ${isActive ? 'bg-yellow-600 text-white border-yellow-600' : 'bg-white text-slate-600 border-slate-200'}">${d.slice(0, 3)}</button>`;
       }).join('');
     }
 
@@ -1202,7 +1255,7 @@
         icon: 'question',
         showCancelButton: true,
         confirmButtonText: 'Ya, Terapkan',
-        confirmButtonColor: '#059669',
+        confirmButtonColor: '#CA8A04',
         cancelButtonText: 'Batal'
       }).then(result => {
         if (!result.isConfirmed) return;
@@ -1212,17 +1265,9 @@
       });
     }
 
-    function saveAdminSettings() {
-      saveCurrentDayFieldsToState();
-
-      const payload = {
-        action: 'saveSettings',
-        latitude: document.getElementById('cfgLat').value,
-        longitude: document.getElementById('cfgLng').value,
-        maxRadiusMeter: document.getElementById('cfgRadius').value,
-        jadwalHarian: jadwalHarianEdit
-      };
-
+    // Kirim pengaturan ke backend. Hanya field yang ada di payload yang diperbarui
+    // di sheet, jadi menyimpan koordinat tidak menyentuh jadwal, dan sebaliknya.
+    function postSettings(payload) {
       Swal.showLoading();
       fetch(BACKEND_URL, { method: 'POST', body: JSON.stringify(payload) })
         .then(res => res.json())
@@ -1235,7 +1280,23 @@
           } else {
             Swal.fire('Gagal', res.message, 'error');
           }
-        });
+        })
+        .catch(() => Swal.fire('Gagal', 'Tidak dapat terhubung ke server.', 'error'));
+    }
+
+    // Tombol 1: hanya Koordinat & Radius
+    function saveLocationSettings() {
+      const lat = document.getElementById('cfgLat').value;
+      const lng = document.getElementById('cfgLng').value;
+      const radius = document.getElementById('cfgRadius').value;
+      if (!lat || !lng || !radius) return Swal.fire('Peringatan', 'Isi latitude, longitude, dan radius terlebih dahulu.', 'warning');
+      postSettings({ action: 'saveSettings', latitude: lat, longitude: lng, maxRadiusMeter: radius });
+    }
+
+    // Tombol 2: hanya Jam Kerja & Kunci Lokasi per Hari
+    function saveScheduleSettings() {
+      saveCurrentDayFieldsToState();
+      postSettings({ action: 'saveSettings', jadwalHarian: jadwalHarianEdit });
     }
 
     /* ==========================================================================
@@ -1264,7 +1325,7 @@
         div.className = 'bg-white p-3 rounded-xl shadow-sm flex items-center justify-between text-xs';
         div.innerHTML = `
           <div>
-            <div class="font-bold text-slate-800">${u.nama} <span class="ml-1 px-1.5 py-0.5 rounded text-[9px] ${u.role === 'Admin' ? 'bg-amber-100 text-amber-700' : 'bg-emerald-100 text-emerald-700'}">${u.role}</span></div>
+            <div class="font-bold text-slate-800">${u.nama} <span class="ml-1 px-1.5 py-0.5 rounded text-[9px] ${u.role === 'Admin' ? 'bg-amber-100 text-amber-700' : 'bg-yellow-100 text-yellow-700'}">${u.role}</span></div>
             <div class="text-[10px] text-slate-500">ID: ${u.id} • ${u.jabatan || '-'}</div>
           </div>
           <div class="flex gap-1">
@@ -1413,15 +1474,15 @@
           </td>
           <td class="p-2 font-mono text-center">
             <div>${d.jamMasuk}</div>
-            ${mapMasukUrl ? `<a href="${mapMasukUrl}" target="_blank" class="text-[9px] text-emerald-600 hover:underline block font-sans"><i class="fa-solid fa-location-dot"></i> Peta</a>` : ''}
+            ${mapMasukUrl ? `<a href="${mapMasukUrl}" target="_blank" class="text-[9px] text-yellow-600 hover:underline block font-sans"><i class="fa-solid fa-location-dot"></i> Peta</a>` : ''}
           </td>
           <td class="p-2 font-mono text-center">
             <div>${d.jamPulang}</div>
             ${mapPulangUrl ? `<a href="${mapPulangUrl}" target="_blank" class="text-[9px] text-amber-600 hover:underline block font-sans"><i class="fa-solid fa-location-dot"></i> Peta</a>` : ''}
           </td>
-          <td class="p-2 text-center font-bold text-emerald-600">${d.durasi}</td>
-          <td class="p-2 text-center">${d.fotoMasuk && d.fotoMasuk !== '-' ? `<a href="${d.fotoMasuk}" target="_blank" class="text-emerald-600 underline text-[10px]">Foto</a>` : '-'}</td>
-          <td class="p-2 text-center">${d.fotoPulang && d.fotoPulang !== '-' ? `<a href="${d.fotoPulang}" target="_blank" class="text-emerald-600 underline text-[10px]">Foto</a>` : '-'}</td>
+          <td class="p-2 text-center font-bold text-yellow-600">${d.durasi}</td>
+          <td class="p-2 text-center">${d.fotoMasuk && d.fotoMasuk !== '-' ? `<a href="${d.fotoMasuk}" target="_blank" class="text-yellow-600 underline text-[10px]">Foto</a>` : '-'}</td>
+          <td class="p-2 text-center">${d.fotoPulang && d.fotoPulang !== '-' ? `<a href="${d.fotoPulang}" target="_blank" class="text-yellow-600 underline text-[10px]">Foto</a>` : '-'}</td>
         `;
         tbody.appendChild(tr);
       });
@@ -1579,7 +1640,7 @@
         type: 'doughnut',
         data: {
           labels: ['Mencapai Target', 'Tidak Mencapai'],
-          datasets: [{ data: [s.tercapai, s.tidakTercapai], backgroundColor: ['#059669', '#ef4444'] }]
+          datasets: [{ data: [s.tercapai, s.tidakTercapai], backgroundColor: ['#CA8A04', '#ef4444'] }]
         },
         options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
       });
@@ -1617,7 +1678,7 @@
           const jk = (c && c.jamKerja) ? c.jamKerja : 0;
           tbody += `<td class="p-1 text-center">${jk > 0 ? jk : '-'}</td>`;
         });
-        const cls = u.tercapai ? 'text-emerald-600' : 'text-red-500';
+        const cls = u.tercapai ? 'text-yellow-600' : 'text-red-500';
         tbody += `<td class="p-1 text-center font-bold ${cls}">${u.totalJamKerja}</td></tr>`;
       });
 
@@ -1678,7 +1739,7 @@
           </div>
           <div class="text-[10px] text-slate-500">ID: ${r.idGuru} • Tanggal: ${r.tanggal}</div>
           ${r.jurnal && r.jurnal !== '-' ? `<div class="text-[11px] text-slate-600 italic">"${r.jurnal}"</div>` : ''}
-          <div>${hasFile ? `<a href="${r.fotoPulang}" target="_blank" class="text-emerald-600 underline text-[10px]"><i class="fa-solid fa-paperclip mr-1"></i>Lihat File Lampiran</a>` : '<span class="text-[10px] text-slate-400">Tidak ada lampiran</span>'}</div>
+          <div>${hasFile ? `<a href="${r.fotoPulang}" target="_blank" class="text-yellow-600 underline text-[10px]"><i class="fa-solid fa-paperclip mr-1"></i>Lihat File Lampiran</a>` : '<span class="text-[10px] text-slate-400">Tidak ada lampiran</span>'}</div>
         `;
         c.appendChild(div);
       });
